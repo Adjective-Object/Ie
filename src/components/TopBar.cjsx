@@ -52,10 +52,13 @@ WidgetTrash = React.createClass
         Reflux.connect(PageStateStore, "pageState")
     ]
 
-    aboutToTrash: false
+    getInitialState: () ->
+        return {
+            aboutToTrash: false 
+        }
 
     trashClass: ->
-        if this.aboutToTrash
+        if this.state.aboutToTrash
             return "trashing"
         else
             return ""
@@ -65,18 +68,29 @@ WidgetTrash = React.createClass
 
     _handleMouseOver: ->
         if this._enabled() and this.state.drag?
-            this.aboutToTrash = true
+            this.setState({
+                aboutToTrash: true
+            })
+        return # I have no idea why this returns false without this return
 
     _handleMouseOut: ->
         if this._enabled() and this.state.drag?
             this.aboutToTrash = false
+            this.setState({
+                aboutToTrash: false
+            })
+        return
 
     _handleMouseUp: ->
         console.log("Enabled: ", this._enabled())
         console.log("Dragging: ", this.state.drag)
+        console.log("About to trash: ", this.aboutToTrash)
         if this._enabled() and this.state.drag?
             WidgetActions.removeWidget(this.state.drag.props.widgetID)
-            this.aboutToTrash = false
+            this.setState({
+                aboutToTrash: false
+            })
+        return
 
     render: ->
         <img id="widget-trash"

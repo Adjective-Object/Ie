@@ -114,8 +114,11 @@ WidgetMixin =
             # remove the 'front' style after the 'return to tile' animation
             # has completed
             setTimeout((() =>
-                this.setState({
-                    isFront: false
+                # If isMounted is false, we are not allowed to setState
+                # This happens if the drag resulted in a widget deletion
+                if this.isMounted()?
+                    this.setState({
+                        isFront: false
                 })), 200)
 
             WidgetActions.stopDrag(this)

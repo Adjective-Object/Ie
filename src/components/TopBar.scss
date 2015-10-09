@@ -33,11 +33,11 @@
         height: 100%;
         opacity: 0;
 
-        @include transition(0.2s, opacity)
+        @include transition(.2s, opacity, transform)
     }
 
     #widget-trash.trashing {
-        transform: rotate(5deg);
+        transform: rotate(10deg);
     }
 
     #motd {
@@ -54,4 +54,8 @@
 
 #root.mode-edit #widget-trash {
     opacity: 0.7;
+}
+
+#root.mode-edit #widget-trash.trashing {
+    opacity: .9;
 }

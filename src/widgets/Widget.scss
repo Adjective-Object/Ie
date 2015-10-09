@@ -21,6 +21,13 @@
 
 .widget.front {
     z-index: 1000;
+    /*
+     * This style functionally allows mouseover to propagate to other elemnents
+     * e.g. the trash element. Since mouse events only trigger on the topmost
+     * element of elements layered atop each other (z-axis), things like the
+     * trash will STOP WORKING because they won't receive mouse events.
+     */
+    pointer-events: none;
 }
 
 

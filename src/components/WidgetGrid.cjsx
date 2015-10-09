@@ -106,7 +106,7 @@ WidgetGrid = React.createClass
             WidgetStore.findOccupiedSpaces(
                 this.state.grid, [])
 
-        # grid uynit and padding
+        # grid unit and padding
         fullGridUnit = {
             x: grid.gridUnit.x + grid.widgetMargin
             y: grid.gridUnit.y + grid.widgetMargin
