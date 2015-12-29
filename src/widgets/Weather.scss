@@ -4,13 +4,30 @@
     .today {
         float: left;
         height: 45%;
-            display: block;
-            width: 100%;
+        width: 100%;
     }
     .five-day {
         height: 45%;
         width: 100%;
-        display: block;
         float: left;
+    }
+
+    .five-day .day {
+        text-transform: uppercase;
+        padding: 10px;
+    }
+
+    .five-day th {
+        padding: 10px;
+    }
+
+    .five-day tr {
+        width: 100%;
+    }
+
+    .five-day td {
+        width: 25%;
+        vertical-align: middle;
+        text-align: center;
     }
 }
