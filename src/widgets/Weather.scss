@@ -1,15 +1,55 @@
 @import '../globals.scss';
 
 .core-weather-widget {
+    .weather-container {
+        display: inline-block;
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
     .today {
-        float: left;
         height: 45%;
         width: 100%;
     }
+
+    .today > div {
+        display: inline-block;
+    }
+
+    .today .weather-icon {
+        width: 50%;
+        text-align: center;
+    }
+
+    .today .conditions {
+        width: 50%;
+        text-align: center;
+    }
+
+    .today .temperature {
+        display: inline-block;
+        font-size: 3em;
+        font-weight: bold;
+        height: 100%;
+        width: 60%;
+    }
+
+    .today .highlow {
+        display: inline-block;
+        height: 100%;
+        border-left: 1px solid;
+        width: 40%;
+    }
+
     .five-day {
         height: 45%;
         width: 100%;
-        float: left;
+    }
+
+    .five-day .weather-icon img {
+        height: 100%;
+        width: 100%;
     }
 
     .five-day .day {
@@ -19,15 +59,18 @@
 
     .five-day th {
         padding: 10px;
+        display: block;
     }
 
     .five-day tr {
-        width: 100%;
+        width: 25%;
+        height: 50%;
+        float: left;
     }
 
     .five-day td {
-        width: 25%;
-        vertical-align: middle;
+        display: block;
+        height: 12.5%;
         text-align: center;
     }
 }
