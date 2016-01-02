@@ -1,1 +1,32 @@
-<svg id="content" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32"><defs><style>.cls-1{fill:none;}.cls-2{clip-path:url(#clip-path);}.cls-3{clip-path:url(#clip-path-2);}.cls-4{fill:#fffbf5;}</style><clipPath id="clip-path"><rect class="cls-1" x="151.21" y="241.51" width="1050.16" height="635.8"/></clipPath><clipPath id="clip-path-2"><rect class="cls-1" x="-60.75" y="95.25" width="1450.75" height="846"/></clipPath></defs><title>ie_proto-comp</title><g class="cls-2"><g class="cls-3"><image width="2848" height="2848" transform="translate(-71.65 -176.47) scale(0.52)" xlink:href="ie_proto-comp1.png"/></g></g><polygon class="cls-4" points="24.5 24.5 7.5 24.5 7.5 14.19 9.88 14.19 9.88 15.19 8.5 15.19 8.5 23.5 23.5 23.5 23.5 15.19 22.12 15.19 22.12 14.19 24.5 14.19 24.5 24.5"/><polygon class="cls-4" points="16 20.66 7.72 15.11 8.28 14.28 16 19.46 23.72 14.28 24.28 15.11 16 20.66"/><polygon class="cls-4" points="16 20.66 7.72 15.11 8.28 14.28 16 19.46 23.72 14.28 24.28 15.11 16 20.66"/><rect class="cls-4" x="6.8" y="20.67" width="7.85" height="1" transform="translate(-11.96 14.19) rotate(-46.03)"/><rect class="cls-4" x="20.78" y="17.25" width="1" height="7.85" transform="translate(-8.74 20.7) rotate(-43.95)"/><rect class="cls-4" x="22.67" y="13.21" width="1" height="1.94" transform="translate(-1.05 26.48) rotate(-58.38)"/><rect class="cls-4" x="7.81" y="13.56" width="2.26" height="1" transform="translate(-6.32 7.36) rotate(-33.85)"/><polygon class="cls-4" points="10.38 15.93 9.38 15.93 9.38 7.5 22.9 7.5 22.9 15.8 21.9 15.8 21.9 8.5 10.38 8.5 10.38 15.93"/><rect class="cls-4" x="11.62" y="10.35" width="2.64" height="1"/><rect class="cls-4" x="15.79" y="10.35" width="4.36" height="1"/><rect class="cls-4" x="15.02" y="12.56" width="5.13" height="1"/><rect class="cls-4" x="11.62" y="12.56" width="1.83" height="1"/><rect class="cls-4" x="11.59" y="14.93" width="8.53" height="1"/></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="content" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFBF5;}
+</style>
+<title>ie_proto-comp</title>
+<g>
+	<g>
+		<g>
+			<g>
+				<polygon class="st0" points="24.5,24.5 7.5,24.5 7.5,14.2 9.9,14.2 9.9,15.2 8.5,15.2 8.5,23.5 23.5,23.5 23.5,15.2 22.1,15.2 
+					22.1,14.2 24.5,14.2 				"/>
+				<polygon class="st0" points="16,20.7 7.7,15.1 8.3,14.3 16,19.5 23.7,14.3 24.3,15.1 				"/>
+				<polygon class="st0" points="16,20.7 7.7,15.1 8.3,14.3 16,19.5 23.7,14.3 24.3,15.1 				"/>
+				
+					<rect x="6.8" y="20.7" transform="matrix(0.6943 -0.7197 0.7197 0.6943 -11.9575 14.1887)" class="st0" width="7.8" height="1"/>
+				<rect x="20.8" y="17.3" transform="matrix(0.7199 -0.694 0.694 0.7199 -8.7381 20.697)" class="st0" width="1" height="7.9"/>
+				<rect x="22.7" y="13.2" transform="matrix(0.5243 -0.8515 0.8515 0.5243 -1.0548 26.48)" class="st0" width="1" height="1.9"/>
+				<rect x="7.8" y="13.6" transform="matrix(0.8305 -0.557 0.557 0.8305 -6.3153 7.3604)" class="st0" width="2.3" height="1"/>
+				<polygon class="st0" points="10.4,15.9 9.4,15.9 9.4,7.5 22.9,7.5 22.9,15.8 21.9,15.8 21.9,8.5 10.4,8.5 				"/>
+			</g>
+			<rect x="11.6" y="10.4" class="st0" width="2.6" height="1"/>
+			<rect x="15.8" y="10.4" class="st0" width="4.4" height="1"/>
+			<rect x="15" y="12.6" class="st0" width="5.1" height="1"/>
+			<rect x="11.6" y="12.6" class="st0" width="1.8" height="1"/>
+			<rect x="11.6" y="14.9" class="st0" width="8.5" height="1"/>
+		</g>
+	</g>
+</g>
+</svg>

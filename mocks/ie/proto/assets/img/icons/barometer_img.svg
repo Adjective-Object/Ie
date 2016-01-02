@@ -1,1 +1,19 @@
-<svg id="background" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><defs><style>.cls-1{fill:none;stroke:#fffbf5;stroke-linecap:round;stroke-miterlimit:10;}</style></defs><title>ie_proto-comp</title><path class="cls-1" d="M4,6.21c4.37-.12,5,0.63,6.35-1.28A4.32,4.32,0,0,0,11,3.82"/><path class="cls-1" d="M4,10c3.51,0,5.07-.31,6.35,1.07a3.28,3.28,0,0,1,.67,1.1"/><path class="cls-1" d="M4,8.08h8"/></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="content" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFBF5;}
+</style>
+<title>ie_proto-comp</title>
+<g>
+	<path class="st0" d="M7.8,6.8h-1C6,6.8,5.2,6.7,4,6.8c-0.3,0-0.5-0.2-0.5-0.4c0,0,0-0.1,0-0.1c0-0.3,0.2-0.5,0.5-0.5c0,0,0,0,0,0
+		c1.2,0,2.1,0,2.8,0C8.8,5.8,9.1,5.8,10,4.6l0.1-0.1c0.2-0.3,0.4-0.5,0.5-0.8c0.1-0.3,0.4-0.4,0.6-0.3s0.4,0.4,0.3,0.6
+		c-0.2,0.4-0.4,0.8-0.6,1.1l-0.1,0.1C10.2,6.3,9,6.9,7.8,6.8z"/>
+	<path class="st0" d="M11,12.7c-0.2,0-0.4-0.1-0.5-0.3c-0.1-0.3-0.3-0.7-0.5-0.9c-0.9-1-2-1-4.3-0.9H4c-0.3,0-0.5-0.2-0.5-0.5
+		c0,0,0,0,0,0c0-0.3,0.2-0.5,0.5-0.4h1.7c2.4,0,3.8-0.1,5,1.2c0.3,0.3,0.6,0.8,0.8,1.2c0.1,0.3,0,0.5-0.3,0.6
+		C11.1,12.7,11.1,12.7,11,12.7z"/>
+	<path class="st0" d="M12,8.6H4c-0.3,0-0.5-0.2-0.5-0.5c0-0.3,0.2-0.5,0.5-0.5h8c0.3,0,0.5,0.2,0.5,0.5C12.5,8.4,12.3,8.6,12,8.6z"
+		/>
+</g>
+</svg>
