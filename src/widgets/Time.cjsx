@@ -36,7 +36,7 @@ TimeWidget = Widget.createWidgetClass
     ]
 
     getInitialState: () ->
-        return { 
+        return {
             date: new Date()
             options: TimerOptions
         }
@@ -73,7 +73,7 @@ TimeWidget = Widget.createWidgetClass
                 <svg className="icon window" viewBox="0 0 32 32" style={this.invertedIconColors()}>
                     <use xlinkHref="img/icons/clock_icn.svg#content"></use>
                 </svg>
-                
+
                 <a href="#" onClick={this.wToggleOptionsMode}>
                     <span className="icon options">
                         <svg viewBox="0 0 32 32" style={this.invertedIconColors()}>
@@ -106,23 +106,21 @@ TimeWidget = Widget.createWidgetClass
         options = this.state.options
         if (optionName == "width" and newVal != options.width)
             WidgetActions.resizeWidget(
-                this.props.widgetID, 
+                this.props.widgetID,
                 this.props.layoutName,
-                newVal, 
+                newVal,
                 options.height)
-        
+
         if(optionName == "height" and newVal != options.height)
             WidgetActions.resizeWidget(
-                this.props.widgetID, 
+                this.props.widgetID,
                 this.props.layoutName,
-                options.width, 
+                options.width,
                 newVal)
-        
-
 
     renderOptionsPanel: ->
-        <OptionForm 
-            optionSet={TimerOptions} 
+        <OptionForm
+            optionSet={TimerOptions}
             objectChangeCallback={this._onOptionChange}
             style={this.invertedColors()}/>
 

@@ -54,7 +54,7 @@ WidgetTrash = React.createClass
 
     getInitialState: () ->
         return {
-            aboutToTrash: false 
+            aboutToTrash: false
         }
 
     trashClass: ->

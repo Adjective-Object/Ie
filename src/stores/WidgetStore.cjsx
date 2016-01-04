@@ -74,7 +74,7 @@ WidgetStore = Reflux.createStore
 
     getWidgetClass: (widgetInstance) ->
         return this.widgetKinds[widgetInstance.widgetKind]
-    
+
     findOccupiedSpaces: (grid, ignoreWidgets) ->
         # init OccupiedSpaces
         occupiedSpaces = new Array(grid.gridDim.x)
@@ -84,7 +84,7 @@ WidgetStore = Reflux.createStore
                 occupiedSpaces[ix][iy] = false
 
         # fill spaces occuupied by widgets
-        relevantWidgets = 
+        relevantWidgets =
             (w for w in this.widgets when w.uuid not in ignoreWidgets)
         for widget in relevantWidgets
             wl = widget.layouts[grid.settingName]
@@ -134,7 +134,7 @@ WidgetStore = Reflux.createStore
         console.log("resizing widget", widgetID)
         for widget in this.widgets
             if widget.uuid == widgetID
-                widget.layouts[layout].dimension = 
+                widget.layouts[layout].dimension =
                     {x: width, y:height}
                 this.trigger(this.widgets)
                 return

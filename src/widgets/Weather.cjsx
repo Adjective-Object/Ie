@@ -150,24 +150,24 @@ WeatherWidget = Widget.createWidgetClass
         options = this.state.options
         if (optionName == "width" and newVal != options.width)
             WidgetActions.resizeWidget(
-                this.props.widgetID, 
+                this.props.widgetID,
                 this.props.layoutName,
-                newVal, 
+                newVal,
                 options.height)
-        
+
         if(optionName == "height" and newVal != options.height)
             WidgetActions.resizeWidget(
-                this.props.widgetID, 
+                this.props.widgetID,
                 this.props.layoutName,
-                options.width, 
+                options.width,
                 newVal)
 
         if(optionname == "woeid" and newVal != options.woeid)
             WidgetActions.updateWidgetSettings()
 
     renderOptionsPanel: ->
-        <OptionForm 
-            optionSet={WeatherOptions} 
+        <OptionForm
+            optionSet={WeatherOptions}
             objectChangeCallback={this._onOptionChange}
             style={invertedColors()}/>
 

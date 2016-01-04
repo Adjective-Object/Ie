@@ -34,7 +34,7 @@ Root = React.createClass
             when BKG.BKG_IMG   then {
                 backgroundImage: style.backgroundImage,
                 backgroundColor: style.backgroundColor}
-            else 
+            else
                 console.log BKG
                 console.log style.backgroundMode
                 throw new Error("unhandled case '#{style.backgroundMode}' \

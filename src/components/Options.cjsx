@@ -46,13 +46,13 @@ Options = React.createClass
             }} >
 
             <h1> User Styles </h1>
-            <OptionsForm 
-                optionSet={StyleOptionStore} 
+            <OptionsForm
+                optionSet={StyleOptionStore}
                 objectChangeCallback={StyleOptionStore.editOption}/>
 
             <h1> User Info </h1>
-            <OptionsForm 
-                optionSet={UserInfoOptionStore} 
+            <OptionsForm
+                optionSet={UserInfoOptionStore}
                 objectChangeCallback={UserInfoOptionStore.editOption}/>
 
             <h1>Install Widgets</h1>

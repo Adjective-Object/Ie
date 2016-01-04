@@ -5,7 +5,7 @@ name = require("namehelpers.cjsx")
 colorRegex = new RegExp("#[0-9a-fA-F]{3,6}")
 mkGenericInput = (inputType) ->
     (fieldName, fieldValue, editOptionCallback) ->
-        edit = (event) -> 
+        edit = (event) ->
             editOptionCallback(fieldName, event.target.value)
 
         <label
@@ -66,23 +66,21 @@ imgOption = {
         </label>
 }
 
-
 enumeratedOption = (someEnum) ->
     enumKeys = Object.keys(someEnum)
     mkOption = (optName) ->
-        <option 
+        <option
             value={optName}
             key={optName}>
             {name.legibleEnumName(optName)}
         </option>
 
-
     return {
-        validator: (val) -> typeof(val) == "string" and 
+        validator: (val) -> typeof(val) == "string" and
                 val in Object.keys(someEnum)
         processor: idProcessor
         mkInputField: (fieldName, fieldValue, editOptionCallback) ->
-            edit = (event) -> 
+            edit = (event) ->
                 editOptionCallback(fieldName, event.target.value)
 
             <label  id={fieldName}
@@ -99,8 +97,8 @@ enumeratedOption = (someEnum) ->
 
 
 intRangeOption = (low, high) ->
-    validator: (n) -> 
-        not isNaN(parseFloat(n)) and isFinite(n) and 
+    validator: (n) ->
+        not isNaN(parseFloat(n)) and isFinite(n) and
             low < parseInt(val) <= high
     processor: (name, n) -> parseInt n
     mkInputField: mkGenericInput('text') # todo slider

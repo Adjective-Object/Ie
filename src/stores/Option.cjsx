@@ -16,7 +16,7 @@ OptionMixin =
 
     editOption: (fieldName, fieldValue) ->
         console.log "editing option", fieldName, this.optionTypes
-        this.options[fieldName] = 
+        this.options[fieldName] =
             this.optionTypes[fieldName].processor(fieldName, fieldValue)
         console.log "setting", fieldName, "to", this.options[fieldName]
         this.cacheAndTrigger()
@@ -28,7 +28,6 @@ OptionMixin =
             JSON.stringify(this.options))
         console.log(this.options)
         this.trigger(this.options)
-
 
 OptionSet = (obj) ->
     # creaate an OptionSet, cmhecking a few conditionals required
@@ -54,13 +53,10 @@ OptionSet = (obj) ->
 
     return obj
 
-
 createStore = (obj) ->
     obj = OptionSet(obj)
     obj.mixins = (obj.mixins || []).concat(OptionMixin)
     return Reflux.createStore(obj)
-
-
 
 module.exports =
     mixin: OptionMixin

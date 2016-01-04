@@ -30,9 +30,8 @@
     pointer-events: none;
 }
 
-
 // BEGIN PJCSS
-.widget { 
+.widget {
     font-family: 'Gotham-Book';
 
     overflow: hidden;
@@ -44,7 +43,7 @@
     }
 
     img, object {
-        user-drag: none; 
+        user-drag: none;
         -moz-user-select: none;
         -webkit-user-drag: none;
     }
@@ -87,7 +86,7 @@
             display: inline-block;
         }
     }
-    
+
     .icon.options {
         float: right;
         width: 38px;
@@ -125,7 +124,6 @@
 
 }
 
-
 .widget {
     .options-panel {
         height: 100%;
@@ -160,7 +158,6 @@
         }
     }
 
-    
     .options-panel.widgetpanel-enter {
         transform: translate(0, 100%);
         opacity:0;

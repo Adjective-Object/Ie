@@ -8,7 +8,7 @@ Widget = require("widgets/Widget.cjsx")
 imgfallback = "img/mocks/happy-tile-20.png"
 
 PictureWidget = Widget.createWidgetClass
-    
+
     widgetName: "core-picture-widget"
 
     mixins: [
@@ -29,8 +29,6 @@ PictureWidget = Widget.createWidgetClass
         widget_data_imgurl = this.props.widgetData.img
         imgurl = if widget_data_imgurl? then widget_data_imgurl else imgfallback
 
-        
         <img src={ imgurl } />
-        
 
 module.exports = PictureWidget
