@@ -93,14 +93,14 @@ WidgetTrash = React.createClass
         return
 
     render: ->
-        <img id="widget-trash"
-            src="./img/icons/trash.png"
+        <img
+            src="img/icons/trash_icn.svg"
+            id="widget-trash"
             className={ this.trashClass() }
             onMouseOver={ this._handleMouseOver }
             onMouseOut={ this._handleMouseOut }
             onMouseUp={ this._handleMouseUp } />
 
-        
 TopBar = React.createClass
     displayName: "TopBar"
 
@@ -118,10 +118,10 @@ TopBar = React.createClass
              className={classNames classes}
              style={{height: this.state.userStyle.topbarHeight}}>
             <NavButton target={PAGE_MODES.EDIT}>
-                <img src="./img/icons/edit-mode.png" />
+                <img src="img/icons/edit-mode_icn.svg" />
             </NavButton>
             <NavButton target={PAGE_MODES.OPTS}>
-                <img src="./img/icons/options-mode.png" />
+                <img src="img/icons/settings_icn.svg" />
             </NavButton>
             <WidgetTrash />
             <h1 id="motd">Welcome, {this.state.userInfo.name}</h1>

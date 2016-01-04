@@ -58,22 +58,27 @@ TimeWidget = Widget.createWidgetClass
         d = this.state.date
         m = moment()
 
-        invertedColors = {
-            backgroundColor: this.state.userStyle.widgetForeground
-            color: this.state.userStyle.widgetBackground
-        }
-
         backgroundBorder = {
             borderColor: this.state.userStyle.widgetBackground
         }
 
+        midnight = m.clone().startOf 'day'
+        hDiff = m.clone().diff(midnight, 'hours')
+
+        # We'll pretend 6 AM and 6 PM are sufficient
+        clockImg = if (hDiff > 6 and hDiff < 18) then "day" else "night"
+
         <div>
-            <div className="window-bar" style={invertedColors}>
-                <img src="img/icons/clock.png" />
+            <div className="window-bar" style={this.invertedColors()}>
+                <svg className="icon window" viewBox="0 0 32 32" style={this.invertedIconColors()}>
+                    <use xlinkHref="img/icons/clock_icn.svg#content"></use>
+                </svg>
                 
                 <a href="#" onClick={this.wToggleOptionsMode}>
                     <span className="icon options">
-                        <img src="img/icons/options-icon.png" />
+                        <svg viewBox="0 0 32 32" style={this.invertedIconColors()}>
+                            <use xlinkHref="img/icons/options_icn.svg#content" />
+                        </svg>
                     </span>
                 </a>
 
@@ -81,9 +86,10 @@ TimeWidget = Widget.createWidgetClass
             </div>
             <div className="clock-content"
                 style={backgroundBorder}>
-                <div className="status" style={invertedColors}>
-                    <img src="img/icons/clock-moon.png"
-                         className="icon status" />
+                <div className="status" style={this.invertedColors()}>
+                    <svg viewBox="0 0 32 32" className="icon status" style={this.invertedIconColors()}>
+                        <use xlinkHref="img/icons/#{clockImg}_img.svg#content" />
+                    </svg>
                 </div>
                 <div className="clock-info">
                     <span className="utc">(UTC{m.format("Z")})</span>
@@ -115,16 +121,10 @@ TimeWidget = Widget.createWidgetClass
 
 
     renderOptionsPanel: ->
-        invertedColors = {
-            backgroundColor: this.state.userStyle.widgetForeground
-            color: this.state.userStyle.widgetBackground
-        }
-
-
         <OptionForm 
             optionSet={TimerOptions} 
             objectChangeCallback={this._onOptionChange}
-            style={invertedColors}/>
+            style={this.invertedColors()}/>
 
 
 module.exports = TimeWidget

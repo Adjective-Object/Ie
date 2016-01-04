@@ -47,12 +47,6 @@ TimeWidget = Widget.createWidgetClass
         return x == 2 && y == 2
 
     renderBasePanel: ->
-
-        invertedColors = {
-            backgroundColor: this.state.userStyle.widgetForeground
-            color: this.state.userStyle.widgetBackground
-        }
-
         mkMessage = (message, index) ->
             <a key={index} href="#">
                 <div className="message">
@@ -66,11 +60,15 @@ TimeWidget = Widget.createWidgetClass
 
         <div>
              <div className="window-bar"
-                  style={invertedColors}>
-                <img src="img/icons/email.png" className="icon window" />
+                style={this.invertedColors()}>
+                <svg className="icon window" viewBox="0 0 32 32" style={this.invertedIconColors()}>
+                    <use xlinkHref="img/icons/mail_icn.svg#content"></use>
+                </svg>
                 <a href="#">
                     <span className="icon options">
-                        <img src="img/icons/options-icon.png" />
+                        <svg viewBox="0 0 32 32" style={this.invertedIconColors()}>
+                            <use xlinkHref="img/icons/options_icn.svg#content" />
+                        </svg>
                     </span>
                 </a>
                 <h3>goodjobpj@gmail.com</h3>
@@ -85,7 +83,9 @@ TimeWidget = Widget.createWidgetClass
             <a href="#">
                 <div className="read-more">
                     <span className="read-more-icon">
-                        <img src="img/icons/down-chevron.png" />
+                        <svg viewBox="0 0 32 32" style={this.iconColors()}>
+                            <use xlinkHref="img/icons/dropdown_icn.svg#content" />
+                        </svg>
                     </span>
                 </div>
             </a>

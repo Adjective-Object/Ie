@@ -137,6 +137,34 @@ WidgetMixin =
             borderColor: this.state.userStyle.widgetBorder
         }
 
+    widgetContentStyle: ->
+        {
+            width: this.props.mountSize.x
+            # Magic number for window title height
+            height: this.props.mountSize.y - 32
+
+            backgroundColor: this.state.userStyle.widgetBackground
+            color: this.state.userStyle.widgetForeground
+            borderColor: this.state.userStyle.widgetBorder
+        }
+
+    invertedColors: ->
+        {
+            backgroundColor: this.state.userStyle.widgetForeground
+            color: this.state.userStyle.widgetBackground
+        }
+
+    iconColors: ->
+        {
+            stroke: "transparent"
+            fill: this.state.userStyle.widgetForeground
+        }
+
+    invertedIconColors: ->
+        {
+            stroke: "transparent"
+            fill: this.state.userStyle.widgetBackground
+        }
 
     ShouldComponentUpdate: (nextState) ->
         return nextState.widget != this.state.widget

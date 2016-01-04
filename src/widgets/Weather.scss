@@ -9,27 +9,36 @@
     }
 
     .today {
-        height: 45%;
+        height: 50%;
         width: 100%;
     }
 
-    .today > div {
-        display: inline-block;
+    .today .weather-icon, .today .conditions {
+        display: block;
+        float: left;
     }
 
     .today .weather-icon {
+        height: 100%;
         width: 50%;
         text-align: center;
     }
 
+    .today .weather-icon svg {
+        height: 60%;
+    }
+
     .today .conditions {
+        height: 100%;
         width: 50%;
         text-align: center;
     }
 
     .today .temperature {
-        display: inline-block;
-        font-size: 3em;
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        font-size: 4em;
         font-weight: bold;
         height: 100%;
         width: 60%;
@@ -37,24 +46,17 @@
 
     .today .highlow {
         display: inline-block;
-        height: 100%;
         border-left: 1px solid;
         width: 40%;
     }
 
     .five-day {
-        height: 45%;
-        width: 100%;
-    }
-
-    .five-day .weather-icon img {
-        height: 100%;
+        height: 50%;
         width: 100%;
     }
 
     .five-day .day {
         text-transform: uppercase;
-        padding: 10px;
     }
 
     .five-day th {
@@ -64,13 +66,15 @@
 
     .five-day tr {
         width: 25%;
-        height: 50%;
+        height: 100%;
         float: left;
     }
 
     .five-day td {
-        display: block;
-        height: 12.5%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 25%;
         text-align: center;
     }
 }

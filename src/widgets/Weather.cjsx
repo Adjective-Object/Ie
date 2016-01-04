@@ -85,26 +85,26 @@ WeatherWidget = Widget.createWidgetClass
         return x == 2 && y == 2
 
     renderBasePanel: ->
-
-        invertedColors = {
-            backgroundColor: this.state.userStyle.widgetForeground
-            color: this.state.userStyle.widgetBackground
-        }
+        self = this
 
         mkForecast = (forecast, index) ->
             <tr className="weather" key={index}>
                 <td className="day">{forecast.day}</td>
                 <td className="weather-icon">
-                    <img src={"img/icons/#{forecast.condition}.png"} />
+                    <svg viewBox="0 0 32 32" style={self.iconColors()}>
+                        <use xlinkHref={"img/icons/#{forecast.condition}_img.svg#content"}></use>
+                    </svg>
                 </td>
                 <td className="high">{forecast.high}</td>
                 <td className="low">{forecast.low}</td>
             </tr>
 
         mkToday = (today) ->
-            <div className="today" style={invertedColors}>
+            <div className="today" style={self.invertedColors()}>
                 <div className="weather-icon">
-                    <img src={"img/icons/#{today.condition}.png"} />
+                    <svg viewBox="0 0 32 32" style={self.invertedIconColors()}>
+                        <use xlinkHref={"img/icons/#{today.condition}_img.svg#content"}></use>
+                    </svg>
                 </div>
                 <div className="conditions">
                     <div className="temperature">{today.temp}&deg;</div>
@@ -119,27 +119,34 @@ WeatherWidget = Widget.createWidgetClass
         today = (mkToday this.state.weather.today)
 
         <div>
-             <div className="window-bar"
-                 style={invertedColors}>
-                <img src="img/icons/rain-drop.png" className="icon window" />
+            <div
+                className="window-bar"
+                style={this.invertedColors()}>
+                <svg className="icon window" viewBox="0 0 32 32" style={this.invertedIconColors()}>
+                    <use xlinkHref="img/icons/weather_icn.svg#content"></use>
+                </svg>
                 <a href="#" onClick={this.wToggleOptionsMode}>
                     <span className="icon options">
-                        <img src="img/icons/options-icon.png" />
+                        <svg viewBox="0 0 32 32" style={this.invertedIconColors()}>
+                            <use xlinkHref="img/icons/options_icn.svg#content" />
+                        </svg>
                     </span>
                 </a>
                 <h3>the weather for today</h3>
             </div>
-
-            <div className="weather-container">
+            <div
+                style={this.widgetContentStyle()}
+                className="weather-container">
                 {today}
-
                 <table className="five-day">
-                    {fiveday}
+                    <tbody>
+                        {fiveday}
+                    </tbody>
                 </table>
             </div>
         </div>
 
-    _onOptionsChange: (optionName, newVal) ->
+    _onOptionChange: (optionName, newVal) ->
         options = this.state.options
         if (optionName == "width" and newVal != options.width)
             WidgetActions.resizeWidget(
@@ -159,15 +166,9 @@ WeatherWidget = Widget.createWidgetClass
             WidgetActions.updateWidgetSettings()
 
     renderOptionsPanel: ->
-        invertedColors = {
-            backgroundColor: this.state.userStyle.widgetForeground
-            color: this.state.userStyle.widgetBackground
-        }
-
-
         <OptionForm 
             optionSet={WeatherOptions} 
             objectChangeCallback={this._onOptionChange}
-            style={invertedColors}/>
+            style={invertedColors()}/>
 
 module.exports = WeatherWidget
