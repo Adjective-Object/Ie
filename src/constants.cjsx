@@ -5,7 +5,8 @@ Enum = (lst) ->
 PAGE_MODES = new Enum([
     "LIVE",
     "EDIT",
-    "OPTS"    
+    "OPTS",
+    "LIBR"
 ])
 
 BKG_MODES = new Enum([

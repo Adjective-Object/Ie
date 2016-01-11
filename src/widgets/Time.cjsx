@@ -28,6 +28,7 @@ TimerOptions = Option.OptionSet
 
 
 TimeWidget = Widget.createWidgetClass
+    displayName: "TimeWidget"
     widgetName: "core-time-widget"
 
     mixins: [

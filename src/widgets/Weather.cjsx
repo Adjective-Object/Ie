@@ -26,6 +26,7 @@ WeatherOptions = Option.OptionSet
         woeid: OptionTypes.string
 
 WeatherWidget = Widget.createWidgetClass
+    displayName: "WeatherWidget"
     widgetName: "core-weather-widget"
 
     mixins: [
@@ -77,7 +78,7 @@ WeatherWidget = Widget.createWidgetClass
         switch code
             when 32, 33, 34, 36     then return "sunny"
             when 37, 38, 39, 45, 47 then return "thunderstorm"
-            when 9, 10, 11, 12, 40  then return "raining"
+            when 9, 10, 11, 12, 40  then return "rain"
             when 26, 27, 28, 29, 30 then return "partly-cloudy"
             else return "sunny"
 

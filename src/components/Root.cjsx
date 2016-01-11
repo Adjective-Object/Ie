@@ -14,6 +14,7 @@ PageStateStore   = require("stores/PageStateStore.cjsx")
 WidgetGrid  = require("components/WidgetGrid.cjsx")
 TopBar      = require("components/TopBar.cjsx")
 OptionsMenu = require("components/Options.cjsx")
+Library     = require("components/Library.cjsx")
 
 UIActions = require("actions.cjsx").UIActions
 
@@ -46,7 +47,8 @@ Root = React.createClass
         classes = {
             "mode-live": pageMode == PAGE_MODES.LIVE
             "mode-edit": pageMode == PAGE_MODES.EDIT
-            "mode-opts": pageMode == PAGE_MODES.OPTS }
+            "mode-opts": pageMode == PAGE_MODES.OPTS
+            "mode-libr": pageMode == PAGE_MODES.LIBR }
 
         <div id="root"
              className={classNames(classes)}
@@ -55,6 +57,7 @@ Root = React.createClass
             <TopBar />
             <WidgetGrid />
             <OptionsMenu />
+            <Library />
         </div>
 
 module.exports = Root

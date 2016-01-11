@@ -75,7 +75,6 @@ WidgetTrash = React.createClass
 
     _handleMouseOut: ->
         if this._enabled() and this.state.drag?
-            this.aboutToTrash = false
             this.setState({
                 aboutToTrash: false
             })
@@ -84,7 +83,7 @@ WidgetTrash = React.createClass
     _handleMouseUp: ->
         console.log("Enabled: ", this._enabled())
         console.log("Dragging: ", this.state.drag)
-        console.log("About to trash: ", this.aboutToTrash)
+        console.log("About to trash: ", this.state.aboutToTrash)
         if this._enabled() and this.state.drag?
             WidgetActions.removeWidget(this.state.drag.props.widgetID)
             this.setState({
@@ -117,6 +116,9 @@ TopBar = React.createClass
         <nav id="top-bar"
              className={classNames classes}
              style={{height: this.state.userStyle.topbarHeight}}>
+            <NavButton target={PAGE_MODES.LIBR}>
+                <img src="img/icons/add-widget_icn.svg" />
+            </NavButton>
             <NavButton target={PAGE_MODES.EDIT}>
                 <img src="img/icons/edit-mode_icn.svg" />
             </NavButton>

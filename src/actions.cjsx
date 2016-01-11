@@ -11,8 +11,8 @@ Reflux = require "reflux"
 #     components update
 
 WidgetActions = Reflux.createActions([
-    "addWidget",
-    "removeWidget",
+    "addWidget"
+    "removeWidget"
     "updateWidgetSettings"
     "moveWidget"
     "startDrag"
@@ -30,7 +30,14 @@ OptionActions = Reflux.createActions([
     "editOption"
 ])
 
+LibraryActions = Reflux.createActions([
+    "addToLibrary"
+    "configureWidget"
+    "createWidget"
+])
+
 module.exports =
     WidgetActions: WidgetActions
     UIActions: UIActions
     OptionActions: OptionActions
+    LibraryActions: LibraryActions

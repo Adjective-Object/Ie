@@ -2,7 +2,6 @@ require("./Options.scss")
 
 Reflux = require("reflux")
 React  = require("react/addons")
-warna  = require("warna")
 
 CONSTANTS  = require("constants.cjsx")
 PAGE_MODES = CONSTANTS.PAGE_MODES
@@ -39,11 +38,7 @@ Options = React.createClass
         self = this
 
 
-        <div id="options"
-            style={{
-                backgroundColor: warna.darken(
-                    this.state.styleOptions.widgetForeground, 0.3).hex
-            }} >
+        <div id="options">
 
             <h1> User Styles </h1>
             <OptionsForm
@@ -54,9 +49,6 @@ Options = React.createClass
             <OptionsForm
                 optionSet={UserInfoOptionStore}
                 objectChangeCallback={UserInfoOptionStore.editOption}/>
-
-            <h1>Install Widgets</h1>
-            todo: put anything here
 
             <button onClick = { this._exitOptionsMode }>
                 Close Menu
