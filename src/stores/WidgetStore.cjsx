@@ -1,5 +1,7 @@
 Reflux = require("reflux")
 
+GridOptionStore  = require("stores/GridOptionStore.cjsx")
+
 WidgetActions = (require "actions.cjsx").WidgetActions
 
 WidgetStore = Reflux.createStore
@@ -7,12 +9,6 @@ WidgetStore = Reflux.createStore
     # actions this store listens to
     listenables: [WidgetActions]
 
-    widgetKinds : {
-        timer: require   "widgets/Time.cjsx"
-        mail: require    "widgets/Mail.cjsx"
-        weather: require "widgets/Weather.cjsx"
-        picture: require "widgets/Picture.cjsx"
-    }
 
     # default state
     widgets: [
@@ -59,21 +55,17 @@ WidgetStore = Reflux.createStore
                     position: {x: 4, y: 1}
                     dimension: {x: 2, y: 1}
             uuid: "fake-uuid-5"
-        },
-        {
-            widgetKind: "picture"
-            data:
-                img: "img/mocks/tile-22.png"
-            layouts:
-                large:
-                    position: {x: 4, y: 2}
-                    dimension: {x: 2, y: 1}
-            uuid: "fake-uuid-6"
         }
     ]
 
     getWidgetClass: (widgetInstance) ->
-        return this.widgetKinds[widgetInstance.widgetKind]
+        switch widgetInstance.widgetKind
+            when "timer"    then return require "widgets/Time.cjsx"
+            when "mail"     then return require "widgets/Mail.cjsx"
+            when "weather"  then return require "widgets/Weather.cjsx"
+            when "picture"  then return require "widgets/Picture.cjsx"
+            #when "dynamic" then return this.getDynamicWidget "dynamic"
+            else return require "widgets/Time.cjsx"
 
     findOccupiedSpaces: (grid, ignoreWidgets) ->
         # init OccupiedSpaces
@@ -104,9 +96,80 @@ WidgetStore = Reflux.createStore
             this.widgets = JSON.parse(storageState)
         return this.widgets
 
-    onAddWidget: (widget) ->
-        this.widgets.push(widget)
-        this.cacheAndTrigger()
+    generateUUID: () ->
+        # Doesn't actually conform to the uuid spec
+        # These IDs are just "unique enough" to be unique widget IDs
+        # We also assume collisions are unlikely enough to not matter
+        genHexString = (length) ->
+            return (Math.floor(Math.pow(16, length) * Math.random())).toString(16)
+
+        return genHexString(8) + "-" +
+            genHexString(4) + "-" +
+            genHexString(4) + "-" +
+            genHexString(4) + "-" +
+            genHexString(12)
+        # Closer to UUID spec, but it feels unnecessarily complicated
+        #genY = () ->
+        #    return ["8", "9", "a", "b"][Math.floor(Math.random() * 4)]
+        #return (genHexString(8) + "-" + genHexString(4) + "-4" + genHexString(3) + "-" + genY() + genHexString(3) + "-" + genHexString(12)
+        
+
+
+    onAddWidget: (kind) ->
+        gridDim = GridOptionStore.getCurrentGrid().gridDim
+        # TOTALLY ARBITRARY
+        widgetDim = {x: 2, y: 1}
+
+        # Populate occupation grid
+        console.log gridDim
+        occupied = new Array(gridDim.x)
+        for i in [0..gridDim.x]
+            occupied[i] = new Array(gridDim.y).fill(0)
+
+        console.log occupied
+
+        for w in this.widgets
+            pos = w.layouts.large.position
+            dim = w.layouts.large.dimension
+            for x in [0..dim.x - 1]
+                for y in [0..dim.y - 1]
+                    occupied[pos.x + x][pos.y + y] = 1
+
+        console.log occupied
+
+        # Find the top-left-most space to put the widget in
+        wx = -1
+        wy = -1
+        # This is disgusting and I hate myself
+        # Y first to prefer up to left
+        for y in [0..gridDim.y - widgetDim.y]
+            feasible = true
+            for x in [0..gridDim.x - widgetDim.x]
+                feasible = true
+                for i in [0..widgetDim.x - 1]
+                    for j in [0..widgetDim.y - 1]
+                        if occupied[x + i][y + j] == 1
+                            feasible = false
+                if feasible
+                    wx = x
+                    wy = y
+                    break
+            if feasible
+                break
+
+        if wx != -1 and wy != -1
+            widget = {
+                widgetKind: kind
+                layouts:
+                    large:
+                        position: {x: wx, y: wy}
+                        dimension: widgetDim
+                uuid: this.generateUUID()
+            }
+            this.widgets.push(widget)
+            this.cacheAndTrigger()
+        else
+            console.log "No space on the grid!"
 
     # moves a widget so its top left corner is at grid position x,y
     # assumes safe to move
