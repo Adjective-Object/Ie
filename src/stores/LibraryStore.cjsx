@@ -22,7 +22,7 @@ LibraryStore = Reflux.createStore
             source: ""
         },
         {
-            kind: "email"
+            kind: "mail"
             name: "Mail"
             icon: "mail"
             source: ""

@@ -1,11 +1,15 @@
 Reflux = require("reflux")
 
+GridActions = (require "actions.cjsx").GridActions
+
 GridOptionStore = Reflux.createStore
     # actions this store listens to
     # listenables: [OptionsActions]
 
     # the name of the store in localstorage
     storeName: "gridOptions"
+
+    listenables: [GridActions]
 
     # default state
     gridOptions:
@@ -50,6 +54,7 @@ GridOptionStore = Reflux.createStore
     ###################
 
     onChangeGridOptions: (index, newGrid) ->
+        console.log "Grid option change!", this.gridOptions[index], newGrid
         this.gridOptions[index] = newGrid
         this.updateCacheAndTrigger()
 

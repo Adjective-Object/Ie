@@ -2,7 +2,9 @@ Reflux = require("reflux")
 
 GridOptionStore  = require("stores/GridOptionStore.cjsx")
 
-WidgetActions = (require "actions.cjsx").WidgetActions
+Actions = require("actions.cjsx")
+WidgetActions = Actions.WidgetActions
+GridActions = Actions.GridActions
 
 WidgetStore = Reflux.createStore
     storeName: "WidgetStore"
@@ -92,11 +94,12 @@ WidgetStore = Reflux.createStore
         #genY = () ->
         #    return ["8", "9", "a", "b"][Math.floor(Math.random() * 4)]
         #return (genHexString(8) + "-" + genHexString(4) + "-4" + genHexString(3) + "-" + genY() + genHexString(3) + "-" + genHexString(12)
-        
+
 
 
     onAddWidget: (kind) ->
-        gridDim = GridOptionStore.getCurrentGrid().gridDim
+        grid = GridOptionStore.getCurrentGrid()
+        gridDim = grid.gridDim
         # TOTALLY ARBITRARY
         widgetDim = {x: 2, y: 1}
 
@@ -106,8 +109,6 @@ WidgetStore = Reflux.createStore
         for i in [0..gridDim.x]
             occupied[i] = new Array(gridDim.y).fill(0)
 
-        console.log occupied
-
         for w in this.widgets
             pos = w.layouts.large.position
             dim = w.layouts.large.dimension
@@ -115,41 +116,59 @@ WidgetStore = Reflux.createStore
                 for y in [0..dim.y - 1]
                     occupied[pos.x + x][pos.y + y] = 1
 
-        console.log occupied
-
         # Find the top-left-most space to put the widget in
         wx = -1
         wy = -1
         # This is disgusting and I hate myself
         # Y first to prefer up to left
-        for y in [0..gridDim.y - widgetDim.y]
+        for y in [0..gridDim.y - 1]
             feasible = true
+            gridRestricted = false
             for x in [0..gridDim.x - widgetDim.x]
                 feasible = true
+                console.log y, x
                 for i in [0..widgetDim.x - 1]
                     for j in [0..widgetDim.y - 1]
                         if occupied[x + i][y + j] == 1
                             feasible = false
-                if feasible
+                if feasible or (y == gridDim.y - 1 and feasible)
                     wx = x
                     wy = y
                     break
+
+            if y == gridDim.y - 1 and feasible
+                console.log "semi-feasible", y, x
+
             if feasible
                 break
 
-        if wx != -1 and wy != -1
-            widget = {
-                widgetKind: kind
-                layouts:
-                    large:
-                        position: {x: wx, y: wy}
-                        dimension: widgetDim
-                uuid: this.generateUUID()
+        if wx == -1 and wy == -1
+            wx = 0
+            wy = gridDim.y
+
+        widget = {
+            widgetKind: kind
+            layouts:
+                large:
+                    position: {x: wx, y: wy}
+                    dimension: widgetDim
+            uuid: this.generateUUID()
+        }
+
+        if wy + widgetDim.y > gridDim.y
+            # Assuming the grid is wide enough for the new widget,
+            # Grow the grid
+            gridDim = {
+                x: gridDim.x
+                y: wy + widgetDim.y
             }
-            this.widgets.push(widget)
-            this.cacheAndTrigger()
-        else
-            console.log "No space on the grid!"
+            grid.gridDim = gridDim
+            # 0 should be the current layout instead
+            GridActions.changeGridOptions(0, grid)
+
+
+        this.widgets.push(widget)
+        this.cacheAndTrigger()
 
     # moves a widget so its top left corner is at grid position x,y
     # assumes safe to move

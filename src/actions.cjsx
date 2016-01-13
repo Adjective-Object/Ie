@@ -36,8 +36,13 @@ LibraryActions = Reflux.createActions([
     "createWidget"
 ])
 
+GridActions = Reflux.createActions([
+    "changeGridOptions"
+])
+
 module.exports =
     WidgetActions: WidgetActions
     UIActions: UIActions
     OptionActions: OptionActions
     LibraryActions: LibraryActions
+    GridActions: GridActions
