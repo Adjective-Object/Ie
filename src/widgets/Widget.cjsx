@@ -124,7 +124,7 @@ WidgetMixin =
 
             WidgetActions.stopDrag(this)
 
-    widgetStyle: ->
+    widgetShape: ->
         {
             width: this.props.mountSize.x
             height: this.props.mountSize.y
@@ -132,6 +132,10 @@ WidgetMixin =
                 this.props.mountOrigin.x,
                 this.props.mountOrigin.y)
 
+        }
+
+    widgetStyle: ->
+        {
             # requires that the wiuget listen to userStyle
             backgroundColor: this.state.userStyle.widgetBackground
             color: this.state.userStyle.widgetForeground
@@ -204,12 +208,14 @@ WidgetMixin =
 
         <CSSTransitionGroup
             transitionName="widgetpanel"
+            transitionAppear={true}
+            transitionAppearTimeout={300}
             transitionEnterTimeout={300}
             transitionLeaveTimeout={300}
             className={classNames(this.widgetClasses())}
             onMouseDown={ if editing then this.wStartDrag else undefined}
             onMouseUp={ if editing then this.wEndDrag else undefined}
-            style={this.widgetStyle()}
+            style={this.widgetShape()}
             id={"widget-#{this.props.widgetID}"}>
             {panel}
         </CSSTransitionGroup>

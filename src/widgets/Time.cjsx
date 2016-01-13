@@ -69,7 +69,7 @@ TimeWidget = Widget.createWidgetClass
         # We'll pretend 6 AM and 6 PM are sufficient
         clockImg = if (hDiff > 6 and hDiff < 18) then "day" else "night"
 
-        <div>
+        <div style={this.widgetStyle()}>
             <div className="window-bar" style={this.invertedColors()}>
                 <svg className="icon window" viewBox="0 0 32 32" style={this.invertedIconColors()}>
                     <use xlinkHref="img/icons/clock_icn.svg#content"></use>

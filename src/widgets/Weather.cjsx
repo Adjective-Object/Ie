@@ -120,7 +120,7 @@ WeatherWidget = Widget.createWidgetClass
         fiveday = (mkForecast d, i for d, i in this.state.weather.forecast[1..])
         today = (mkToday this.state.weather.today)
 
-        <div>
+        <div style={this.widgetStyle()}>
             <div
                 className="window-bar"
                 style={this.invertedColors()}>

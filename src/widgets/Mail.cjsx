@@ -58,7 +58,7 @@ TimeWidget = Widget.createWidgetClass
 
         messages = (mkMessage m, i for m, i in this.props.messages)
 
-        <div>
+        <div style={this.widgetStyle()}>
              <div className="window-bar"
                 style={this.invertedColors()}>
                 <svg className="icon window" viewBox="0 0 32 32" style={this.invertedIconColors()}>

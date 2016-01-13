@@ -12,7 +12,7 @@
     top:0;
     left:0;
 
-    @include transition(200ms, width, height)
+    @include transition(200ms, transform, width, height)
 }
 
 .widget.dragging {
@@ -204,5 +204,5 @@
     opacity: 1;
     /* transform: scale(1, 1); */
     /* @include transition(cubic-bezier(0,1.96,.57,.54), .5s, opacity, background, transform); */
-    @include transition(.5s, opacity, ease-out);
+    @include transition(.25s, opacity, ease-out);
 }
