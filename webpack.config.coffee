@@ -35,5 +35,6 @@ module.exports =
     # (and add needed behavior to the compiler)
     plugins: [ 
         new ExtractTextPlugin('[name].css'),
-        new webpack.optimize.UglifyJsPlugin([])
+        new webpack.optimize.UglifyJsPlugin([]),
+        new webpack.optimize.DedupePlugin()
     ]

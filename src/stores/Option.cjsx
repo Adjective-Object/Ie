@@ -8,10 +8,13 @@ OptionTypes = require("stores/OptionTypes.cjsx")
 name = require("namehelpers.cjsx")
 
 OptionMixin =
+    fetchedFromStore: false
     getInitialState: ->
-        storageState = window.localStorage.getItem(this.storeName)
-        if storageState
-            this.options = JSON.parse(storageState)
+        if !this.fetchedFromStore
+            storageState = window.localStorage.getItem(this.storeName)
+            if storageState
+                this.options = JSON.parse(storageState)
+            this.fetchedFromStore = true
         return this.options
 
     editOption: (fieldName, fieldValue) ->
