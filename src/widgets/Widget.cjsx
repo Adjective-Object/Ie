@@ -189,15 +189,6 @@ WidgetMixin =
     render: ->
         editing = this.state.pageState == PAGE_MODES.EDIT
 
-        optPanel = () =>
-            if this.state.renderOptionsPanel
-                return React.cloneElement(
-                    this.renderOptionsPanel(), {
-                        className: "options-panel",
-                        key: "opts"
-                    })
-
-
         if this.state.renderBasePanel
             panel = React.cloneElement(
                     this.renderBasePanel(), {

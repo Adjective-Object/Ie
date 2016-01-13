@@ -170,6 +170,6 @@ WeatherWidget = Widget.createWidgetClass
         <OptionForm
             optionSet={WeatherOptions}
             objectChangeCallback={this._onOptionChange}
-            style={invertedColors()}/>
+            style={this.invertedColors()}/>
 
 module.exports = WeatherWidget
