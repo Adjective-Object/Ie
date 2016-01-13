@@ -120,10 +120,20 @@ TimeWidget = Widget.createWidgetClass
                 newVal)
 
     renderOptionsPanel: ->
-        <OptionForm
-            optionSet={TimerOptions}
-            objectChangeCallback={this._onOptionChange}
-            style={this.invertedColors()}/>
+        <div>
+            <a href="#" onClick={this.wToggleOptionsMode}>
+                <span className="icon options">
+                    <svg viewBox="0 0 32 32" style={this.invertedIconColors()}>
+                        <use xlinkHref="img/icons/options_icn.svg#content" />
+                    </svg>
+                </span>
+            </a>
+
+            <OptionForm
+                optionSet={TimerOptions}
+                objectChangeCallback={this._onOptionChange}
+                style={this.invertedColors()}/>
+        </div>
 
 
 module.exports = TimeWidget

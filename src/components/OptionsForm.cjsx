@@ -44,6 +44,7 @@ module.exports =
                 this.props,
                 "optionSet",
                 "objectChangeCallback")
+            otherProps.className = "widget-options"
 
             opts = this.props.optionSet
 

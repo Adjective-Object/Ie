@@ -14,18 +14,26 @@
     }
 
     .today .weather-icon, .today .conditions {
-        display: block;
         float: left;
     }
 
     .today .weather-icon {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         height: 100%;
         width: 50%;
-        text-align: center;
+    }
+
+    .today .weather-text {
+        opacity: 0.7;
+        font-style: italic;
+        padding: 10px 0px;
     }
 
     .today .weather-icon svg {
-        height: 60%;
+        height: 50%;
     }
 
     .today .conditions {
@@ -36,18 +44,26 @@
 
     .today .temperature {
         display: inline-flex;
-        flex-direction: column;
-        justify-content: center;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
         font-size: 4em;
         font-weight: bold;
         height: 100%;
         width: 60%;
+        padding: 10px;
     }
 
     .today .highlow {
         display: inline-block;
-        border-left: 1px solid;
         width: 40%;
+        padding: 5px;
+        border-left: 1px solid;
+        font-size: 1.5em;
+        opacity: 0.9;
+        .high {
+            margin-bottom: 5px;
+        }
     }
 
     .five-day {

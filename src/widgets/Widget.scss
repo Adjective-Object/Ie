@@ -12,7 +12,7 @@
     top:0;
     left:0;
 
-    @include transition(200ms, transform, width, height)
+    @include transition(200ms, width, height)
 }
 
 .widget.dragging {
@@ -38,7 +38,6 @@
 
     .window-bar {
         height: 32px;
-        float: left;
         width: 100%;
     }
 
@@ -158,24 +157,52 @@
         }
     }
 
-    .options-panel.widgetpanel-enter {
+    .widgetpanel-enter.options-panel {
         transform: translate(0, 100%);
         opacity:0;
+
+        .icon.options {
+            visibility: hidden;
+        }
     }
 
-    .options-panel.widgetpanel-enter-active {
+    .widgetpanel-enter-active.options-panel {
         opacity: 1;
         transform: translate(0, 0);
+
+        .icon.options {
+            visibility: visible;
+        }
     }
 
 
-    .options-panel.widgetpanel-leave {
+    .widgetpanel-leave.options-panel {
         transform: translate(0, 0);
         opacity:1;
+
+        .icon.options {
+            visibility: hidden;
+        }
     }
 
-    .options-panel.widgetpanel-leave-active {
+    .widgetpanel-leave-active.options-panel {
         opacity: 0;
         transform: translate(0, 100%);
+
+        .icon.options {
+            visibility: hidden;
+        }
     }
+}
+
+.widgetpanel-appear {
+    opacity: 0;
+    /* transform: scale(0.5, 0.5); */
+}
+
+.widgetpanel-appear.widgetpanel-appear-active {
+    opacity: 1;
+    /* transform: scale(1, 1); */
+    /* @include transition(cubic-bezier(0,1.96,.57,.54), .5s, opacity, background, transform); */
+    @include transition(.5s, opacity, ease-out);
 }

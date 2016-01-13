@@ -10,6 +10,7 @@ PAGE_MODES = CONSTANTS.PAGE_MODES
 LibraryStore   = require("stores/LibraryStore.cjsx")
 
 Actions        = require("actions.cjsx")
+UIActions      = Actions.UIActions
 WidgetActions  = Actions.WidgetActions
 LibraryActions = Actions.LibraryActions
 

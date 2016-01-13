@@ -106,6 +106,7 @@ WeatherWidget = Widget.createWidgetClass
                     <svg viewBox="0 0 32 32" style={self.invertedIconColors()}>
                         <use xlinkHref={"img/icons/#{today.condition}_img.svg#content"}></use>
                     </svg>
+                    <div className="weather-text">{today.text}</div>
                 </div>
                 <div className="conditions">
                     <div className="temperature">{today.temp}&deg;</div>
@@ -167,9 +168,19 @@ WeatherWidget = Widget.createWidgetClass
             WidgetActions.updateWidgetSettings()
 
     renderOptionsPanel: ->
-        <OptionForm
-            optionSet={WeatherOptions}
-            objectChangeCallback={this._onOptionChange}
-            style={this.invertedColors()}/>
+        <div>
+            <a href="#" onClick={this.wToggleOptionsMode}>
+                <span className="icon options">
+                    <svg viewBox="0 0 32 32" style={this.invertedIconColors()}>
+                        <use xlinkHref="img/icons/options_icn.svg#content" />
+                    </svg>
+                </span>
+            </a>
+
+            <OptionForm
+                optionSet={WeatherOptions}
+                objectChangeCallback={this._onOptionChange}
+                style={this.invertedColors()}/>
+        </div>
 
 module.exports = WeatherWidget

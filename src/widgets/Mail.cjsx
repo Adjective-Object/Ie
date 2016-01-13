@@ -77,18 +77,20 @@ TimeWidget = Widget.createWidgetClass
                 </a>
             </div>
 
-            <div className="inbox">
-                {messages}
-            </div>
-            <a href="#">
-                <div className="read-more">
-                    <span className="read-more-icon">
-                        <svg viewBox="0 0 32 32" style={this.iconColors()}>
-                            <use xlinkHref="img/icons/dropdown_icn.svg#content" />
-                        </svg>
-                    </span>
+            <div className="mail-container" style={this.widgetContentStyle()}>
+                <div className="inbox">
+                    {messages}
                 </div>
-            </a>
+                <a href="#">
+                    <div className="read-more">
+                        <span className="read-more-icon">
+                            <svg viewBox="0 0 32 32" style={this.iconColors()}>
+                                <use xlinkHref="img/icons/dropdown_icn.svg#content" />
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+            </div>
         </div>
 
 module.exports = TimeWidget

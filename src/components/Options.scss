@@ -61,3 +61,21 @@
     transform: translate(-250px, 0);
     -webkit-transform: translate(-250px, 0);
 }
+
+.options-panel {
+    .widget-options {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 20px;
+    }
+
+    .icon.options {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+    }
+}
