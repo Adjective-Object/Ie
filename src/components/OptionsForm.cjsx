@@ -1,7 +1,7 @@
 require("./Options.scss")
 
 Reflux = require("reflux")
-React  = require("react/addons")
+React  = require("react")
 warna  = require("warna")
 _      = require("lodash")
 
@@ -24,12 +24,12 @@ module.exports =
 
         _handleEditOption: (name, value) ->
             if this.props.optionSet.validateOption(name, value)
-                console.log "passed validation (#{name}, #{value})"
+                # console.log "passed validation (#{name}, #{value})"
                 CSS.removeClass(document.getElementById(name), 'invalid');
                 CSS.addClass(document.getElementById(name), 'valid');
                 this.props.objectChangeCallback(name, value)
             else
-                console.log "failed validation (#{name}, #{value})"
+                # console.log "failed validation (#{name}, #{value})"
                 CSS.removeClass(document.getElementById(name), 'valid');
                 CSS.addClass(document.getElementById(name), 'invalid');
 
@@ -44,8 +44,6 @@ module.exports =
                 this.props,
                 "optionSet",
                 "objectChangeCallback")
-
-            console.log otherProps
 
             opts = this.props.optionSet
 

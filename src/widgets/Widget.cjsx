@@ -1,8 +1,9 @@
 require ("./Widget.scss")
 
 Reflux = require("reflux")
-React  = require("react/addons")
-ReactCSSTransitionGroup = React.addons.CSSTransitionGroup
+React  = require("react")
+ReactDOM = require("react-dom")
+CSSTransitionGroup = require("react-addons-css-transition-group")
 classNames = require("classnames")
 
 Option = require("stores/Option.cjsx")
@@ -70,7 +71,7 @@ WidgetMixin =
                     x: nativeEvent.x - this.state.trackingOrigin.x
                     y: nativeEvent.y - this.state.trackingOrigin.y })
 
-            React.findDOMNode(this).style.transform = CSS.translate(
+            ReactDOM.findDOMNode(this).style.transform = CSS.translate(
                 this.props.mountOrigin.x + this.state.relativePos.x,
                 this.props.mountOrigin.y + this.state.relativePos.y)
 
@@ -105,7 +106,7 @@ WidgetMixin =
 
             else
                 console.log "widget move failed endslot=#{endSlot}"
-                domNode = React.findDOMNode(this)
+                domNode = ReactDOM.findDOMNode(this)
                 # move it to the original position
                 domNode.style.transform = CSS.translate(
                     this.props.mountOrigin.x,
@@ -190,7 +191,7 @@ WidgetMixin =
 
         optPanel = () =>
             if this.state.renderOptionsPanel
-                return cloneWithProps(
+                return React.cloneElement(
                     this.renderOptionsPanel(), {
                         className: "options-panel",
                         key: "opts"
@@ -198,27 +199,29 @@ WidgetMixin =
 
 
         if this.state.renderBasePanel
-            panel = React.addons.cloneWithProps(
+            panel = React.cloneElement(
                     this.renderBasePanel(), {
                         className: "base-panel",
                         key: "base"
                     })
         else
-            panel = React.addons.cloneWithProps(
+            panel = React.cloneElement(
                     this.renderOptionsPanel(), {
                         className: "options-panel",
                         key: "opt"
                     })
 
-        <ReactCSSTransitionGroup
+        <CSSTransitionGroup
             transitionName="widgetpanel"
+            transitionEnterTimeout={300}
+            transitionLeaveTimeout={300}
             className={classNames(this.widgetClasses())}
             onMouseDown={ if editing then this.wStartDrag else undefined}
             onMouseUp={ if editing then this.wEndDrag else undefined}
             style={this.widgetStyle()}
             id={"widget-#{this.props.widgetID}"}>
             {panel}
-        </ReactCSSTransitionGroup>
+        </CSSTransitionGroup>
 
 module.exports = {
     createWidgetClass: createWidgetClass

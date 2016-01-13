@@ -2,6 +2,7 @@ require("./WidgetGrid.scss")
 
 Reflux = require("reflux")
 React  = require("react")
+ReactDOM = require("react-dom")
 
 GridOptionStore  = require("stores/GridOptionStore.cjsx")
 StyleOptionStore = require("stores/StyleOptionStore.cjsx")
@@ -48,7 +49,7 @@ WidgetGrid = React.createClass
         window.removeEventListener('resize', this._resizeWindow)
 
     _centerWithMargin: ->
-        wrapper = React.findDOMNode(this.refs.wrapper)
+        wrapper = ReactDOM.findDOMNode(this.refs.wrapper)
 
         topBarHeight = this.state.userStyle.topbarHeight
 
@@ -80,7 +81,7 @@ WidgetGrid = React.createClass
             0 <= y and y < grid.gridDim.y and
             not occupiedSpaces[x][y]
 
-        console.log widgetGridSize, gridX, gridY
+        # console.log widgetGridSize, gridX, gridY
 
         for ix in [0 .. widgetGridSize.x - 1]
             for iy in [0 .. widgetGridSize.y - 1]
@@ -99,8 +100,6 @@ WidgetGrid = React.createClass
 
     render: ->
         grid = this.state.grid
-
-        console.dir(WidgetStore)
 
         occupiedSpaces =
             WidgetStore.findOccupiedSpaces(

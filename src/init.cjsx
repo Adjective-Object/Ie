@@ -1,13 +1,12 @@
 require("./index.scss")
 React = require("react")
+ReactDOM = require("react-dom")
 Root  = require("./components/Root")
 
 window.onload = () ->
 
     # render the root element to render on each store change
-    console.log "rendering root component to '#app'"
-
-    React.render(
+    ReactDOM.render(
         <Root/>,
         document.getElementById('app')
     )

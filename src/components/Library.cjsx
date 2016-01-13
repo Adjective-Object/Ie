@@ -1,7 +1,7 @@
 require("./Library.scss")
 
 Reflux = require("reflux")
-React  = require("react/addons")
+React  = require("react")
 warna  = require("warna")
 
 CONSTANTS  = require("constants.cjsx")
@@ -32,7 +32,7 @@ Library = React.createClass
         self = this
 
         mkLibraryEntry = (widget) ->
-            <div className="library-entry">
+            <div className="library-entry" key={widget.kind}>
                 <a className="add-widget" href="#" onClick={ self._addWidget.bind(self, widget) }>
                     <span className="add-icon">+</span>
                     <img className="icon" src="img/icons/#{widget.icon}_icn.svg#content" />
