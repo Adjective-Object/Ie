@@ -1,6 +1,9 @@
 @import '../globals.scss';
 
 #library {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     width: 250px;
     position: fixed;
     top: 50px;
@@ -11,8 +14,7 @@
     color: #FFFFFF;
 
     max-height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
 
     @include transition(0.2s, transform);
 
@@ -103,6 +105,35 @@
         border: 2px solid white;
         color: rgba(0, 0, 0, 0.8);
         background: white
+    }
+
+    #add-widget-wrapper {
+        margin-top: auto;
+        @include transition(0.5s, transform);
+        transform: translate(0, 32px);
+    }
+
+    #add-widget-wrapper.show {
+        transform: translate(0, 0px);
+    }
+
+    #widget-url {
+        width: 100%;
+        height: 32px;
+        opacity: 0;
+        @include transition(1s, opacity);
+    }
+
+    .show #widget-url {
+        opacity: 1;
+    }
+
+    #widget-url.good {
+        /* background: green; */
+    }
+
+    #widget-url.bad {
+        /* background: red; */
     }
 }
 

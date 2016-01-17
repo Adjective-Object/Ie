@@ -22,12 +22,35 @@ Library = React.createClass
     
     mixins: [Reflux.connect(LibraryStore, "library")]
 
+
+    getInitialState: () ->
+        showWidgetEntry: false
+
     _exitLibraryMode: ->
         document.getElementById("library").className = ""
         UIActions.enterMode(PAGE_MODES.LIVE)
 
     _addWidget: (widget) ->
         WidgetActions.addWidget(widget.kind)
+
+    _addWidgetInput: ->
+        if not this.state.showWidgetEntry
+            this.refs.url.value = ""
+
+        this.setState({
+            showWidgetEntry: !this.state.showWidgetEntry
+            urlStatus: ""
+        })
+
+    _processWidgetURL: (event) ->
+        if event.charCode == 13
+            if this.refs.url.value.length
+                this.setState({urlStatus: "good"})
+                LibraryActions.addToLibrary(this.refs.url.value)
+            else
+                # Empty url
+                console.log "Empty url!"
+                this.setState({urlStatus: "bad"})
 
     render: () ->
         self = this
@@ -49,9 +72,24 @@ Library = React.createClass
             <div id="catalog">
                 {catalog}
             </div>
+
             <button onClick = { this._exitLibraryMode }>
                 Close Menu
             </button>
+
+            <div id="add-widget-wrapper"
+                className={ if this.state.showWidgetEntry then "show" else "" }>
+                <button onClick = { this._addWidgetInput }>
+                    Add Widget
+                </button>
+                <input
+                    id="widget-url"
+                    ref="url"
+                    className={ if this.state.urlStatus? then this.state.urlStatus else "" }
+                    onKeyPress={ this._processWidgetURL }
+                    type="text"
+                    placeholder="Widget URL"></input>
+            </div>
         </div>
 
 module.exports = Library

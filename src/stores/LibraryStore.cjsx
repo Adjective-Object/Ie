@@ -36,7 +36,20 @@ LibraryStore = Reflux.createStore
         # if localstorage
         return this.widgets
 
-    onAddToLibrary: (widgetSrc) ->
+    onAddToLibrary: (widgetURL) ->
+        console.log "Attempting to install widget from", widgetURL
+        fetch(widgetURL)
+        .then (response) ->
+                return response.json()
+            , (error) ->
+                console.log "Fetch failed", error
+                return null
+        .then (json) ->
+                if json
+                    console.log json
+            , (error) ->
+                console.log "Manifest JSON error", error
+
         # Fetch the widget
         # this.trigger(widget)
         return
