@@ -7,6 +7,7 @@ ReactDOM = require("react-dom")
 GridOptionStore  = require("stores/GridOptionStore.cjsx")
 StyleOptionStore = require("stores/StyleOptionStore.cjsx")
 WidgetStore      = require("stores/WidgetStore.cjsx")
+LibraryStore     = require("stores/LibraryStore.cjsx")
 
 translate = require("csshelpers.cjsx").translate
 
@@ -141,7 +142,7 @@ WidgetGrid = React.createClass
             /> for [x, y], ind in xyPairs)
 
         widgetLayouts =
-            ([WidgetStore.getWidgetClass(w),
+            ([LibraryStore.getWidgetClass(w.widgetKind),
                 w,
                 w.layouts[grid.settingName]
                 ] for w in this.state.widgets)

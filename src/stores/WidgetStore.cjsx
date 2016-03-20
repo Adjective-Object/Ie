@@ -1,6 +1,8 @@
 Reflux = require("reflux")
 
-GridOptionStore  = require("stores/GridOptionStore.cjsx")
+GridOptionStore = require("stores/GridOptionStore.cjsx")
+LibraryStore    = require("stores/LibraryStore.cjsx")
+DynamicWidget   = require("widgets/DynamicWidget.cjsx")
 
 Actions = require("actions.cjsx")
 WidgetActions = Actions.WidgetActions
@@ -11,43 +13,31 @@ WidgetStore = Reflux.createStore
     # actions this store listens to
     listenables: [WidgetActions]
 
+    mixins: [Reflux.connect(LibraryStore, "library")]
 
     # default state
     widgets: [
-        {
-            widgetKind: "timer"
-            layouts:
-                large:
-                    position: {x: 0, y: 0}
-                    dimension: {x: 2, y: 1}
-            uuid: "fake-uuid"
-        },
-        {
-            widgetKind: "mail"
-            layouts:
-                large:
-                    position: {x: 0, y: 1}
-                    dimension: {x: 2, y: 2}
-            uuid: "fake-uuid-2"
-        },
-        {
-            widgetKind: "weather"
-            layouts:
-                large:
-                    position: {x: 2, y: 0}
-                    dimension: {x: 2, y: 2}
-            uuid: "fake-uuid-3"
-        }
+        #{
+        #    widgetKind: "timer"
+        #    layouts:
+        #        large:
+        #            position: {x: 0, y: 0}
+        #            dimension: {x: 2, y: 1}
+        #    uuid: "fake-uuid"
+        #}
     ]
 
     getWidgetClass: (widgetInstance) ->
-        switch widgetInstance.widgetKind
-            when "timer"    then return require "widgets/Time.cjsx"
-            when "mail"     then return require "widgets/Mail.cjsx"
-            when "weather"  then return require "widgets/Weather.cjsx"
-            when "picture"  then return require "widgets/Picture.cjsx"
-            #when "dynamic" then return this.getDynamicWidget "dynamic"
-            else return require "widgets/Time.cjsx"
+        console.log this
+        #return this.library.getWidgetClass(widgetInstance)
+        #switch widgetInstance.widgetKind
+        #    when "timer"    then return require "widgets/Time.cjsx"
+        #    when "mail"     then return require "widgets/Mail.cjsx"
+        #    when "weather"  then return require "widgets/Weather.cjsx"
+        #    when "picture"  then return require "widgets/Picture.cjsx"
+        #    when "dynamic" then return this.getDynamicWidget "dynamic"
+        #    # when "dynamic" then return require "widgets/DynamicWidget.cjsx"
+        #    else return require "widgets/Time.cjsx"
 
     findOccupiedSpaces: (grid, ignoreWidgets) ->
         # init OccupiedSpaces
@@ -98,6 +88,7 @@ WidgetStore = Reflux.createStore
 
 
     onAddWidget: (kind) ->
+        console.log "Trying to add widget", kind
         grid = GridOptionStore.getCurrentGrid()
         gridDim = grid.gridDim
         # TOTALLY ARBITRARY

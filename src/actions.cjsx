@@ -34,6 +34,7 @@ LibraryActions = Reflux.createActions([
     "addToLibrary"
     "configureWidget"
     "createWidget"
+    "removeFromLibrary"
 ])
 
 GridActions = Reflux.createActions([

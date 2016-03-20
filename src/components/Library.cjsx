@@ -22,7 +22,6 @@ Library = React.createClass
     
     mixins: [Reflux.connect(LibraryStore, "library")]
 
-
     getInitialState: () ->
         showWidgetEntry: false
 
@@ -32,6 +31,9 @@ Library = React.createClass
 
     _addWidget: (widget) ->
         WidgetActions.addWidget(widget.kind)
+
+    _removeWidget: (widget) ->
+        LibraryActions.removeFromLibrary(widget.kind)
 
     _addWidgetInput: ->
         if not this.state.showWidgetEntry
@@ -62,7 +64,7 @@ Library = React.createClass
                     <img className="icon" src="img/icons/#{widget.icon}_icn.svg#content" />
                     <span className="widget-name">{widget.name}</span>
                 </a>
-                <a className="remove-widget" href="#">x</a>
+                <a className="remove-widget" href="#" onClick={ self._removeWidget.bind(self, widget) }>x</a>
             </div>
 
         catalog = (mkLibraryEntry w for w in this.state.library)

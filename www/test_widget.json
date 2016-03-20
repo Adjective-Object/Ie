@@ -1,0 +1,6 @@
+{
+    "kind": "test_widget",
+    "name": "Test Widget",
+    "description": "This is a widget for testing widget installation",
+    "src": "http://localhost:8080/www/dynamic.js"
+}
