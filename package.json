@@ -1,5 +1,5 @@
 {
-  "name": "Ie",
+  "name": "Anchorage",
   "version": "0.0.1",
   "description": "An extensible widget-based homepage",
   "main": "js/init.cjsx",
@@ -10,7 +10,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/Adjective-Object/Ie.git"
+    "url": "git://github.com/Adjective-Object/anchorage.git"
   },
   "devDependencies": {
     "cjsx-loader": "^2.0.1",
@@ -25,8 +25,8 @@
     "sassify": "0.9.1",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
-    "webpack": "^1.12.1",
-    "node-sass": "^3.3.2"
+    "webpack": "^1.12.6",
+    "node-sass": "^3.4.2"
   },
   "dependencies": {
     "classnames": "^2.1.3",

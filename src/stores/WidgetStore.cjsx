@@ -2,7 +2,6 @@ Reflux = require("reflux")
 
 GridOptionStore = require("stores/GridOptionStore.cjsx")
 LibraryStore    = require("stores/LibraryStore.cjsx")
-DynamicWidget   = require("widgets/DynamicWidget.cjsx")
 
 Actions = require("actions.cjsx")
 WidgetActions = Actions.WidgetActions
