@@ -38,6 +38,29 @@ WidgetStore = Reflux.createStore
         #    # when "dynamic" then return require "widgets/DynamicWidget.cjsx"
         #    else return require "widgets/Time.cjsx"
 
+    getWidgetById: (widgetId) ->
+      found = (i for i in this.widgets when i.uuid is widgetId)[0]
+      if found
+        return found
+      else
+        return null
+
+    getInvalidWidgets: (grid, ignoreWidgets) ->
+      relevantWidgets =
+          (w for w in this.widgets when w.uuid not in ignoreWidgets)
+
+      isOpen = (x,y) ->
+          0 <= x and x < grid.gridDim.x and
+          0 <= y and y < grid.gridDim.y
+      badWidgets = []
+      for widget in relevantWidgets
+          wl = widget.layouts[grid.settingName]
+          if wl?
+              if not isOpen(wl.dimension.x + (wl.position.x - 1), wl.dimension.y + (wl.position.y - 1))
+                  badWidgets.push(widget.uuid)
+      return badWidgets
+
+
     findOccupiedSpaces: (grid, ignoreWidgets) ->
         # init OccupiedSpaces
         occupiedSpaces = new Array(grid.gridDim.x)
@@ -141,6 +164,7 @@ WidgetStore = Reflux.createStore
             layouts:
                 large:
                     position: {x: wx, y: wy}
+                    desiredPosition: {x: wx, y: wy}
                     dimension: widgetDim
             uuid: this.generateUUID()
         }

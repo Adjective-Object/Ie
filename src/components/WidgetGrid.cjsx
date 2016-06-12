@@ -11,6 +11,8 @@ LibraryStore     = require("stores/LibraryStore.cjsx")
 
 translate = require("csshelpers.cjsx").translate
 
+WidgetActions = require("actions.cjsx").WidgetActions
+
 GridTileIndicator = React.createClass
     render: ->
         grid = this.props.grid
@@ -95,6 +97,39 @@ WidgetGrid = React.createClass
             y: gridY
         }
 
+    reflowWidget: (widgetID) ->
+      grid = this.state.grid
+      invalidWidgets =
+          WidgetStore.getInvalidWidgets(this.state.grid, [])
+      occupiedSpaces =
+        WidgetStore.findOccupiedSpaces(
+            this.state.grid, invalidWidgets)
+      isOpen = (x,y) ->
+          0 <= x and x < grid.gridDim.x and
+          0 <= y and y < grid.gridDim.y and
+          not occupiedSpaces[x][y]
+
+      isOkay = (gridX, gridY, widgetGridSize) ->
+        for ix in [0 .. widgetGridSize.x - 1]
+            for iy in [0 .. widgetGridSize.y - 1]
+                if not isOpen(gridX + ix, gridY + iy)
+                    return false
+        return true
+      interestedWidget = WidgetStore.getWidgetById(widgetID)
+      if interestedWidget
+          position = interestedWidget.layouts[grid.settingName].position
+          widgetGridSize = interestedWidget.layouts[grid.settingName].dimension
+          for py in [position.y .. 0]
+            for px in [position.x .. 0]
+              if isOkay(px, py, widgetGridSize)
+                WidgetActions.moveWidget(
+                    widgetID,
+                    grid.settingName,
+                    px, py)
+                return true
+      return false
+
+
     #############
     # rendering #
     #############
@@ -102,9 +137,19 @@ WidgetGrid = React.createClass
     render: ->
         grid = this.state.grid
 
+        invalidWidgets =
+            WidgetStore.getInvalidWidgets(this.state.grid, [])
+
+        for invalidUUID in invalidWidgets
+            result = this.reflowWidget(invalidUUID)
+            if not result
+              console.log "i can't move this shit anymore."
+
+        console.log invalidWidgets
+
         occupiedSpaces =
             WidgetStore.findOccupiedSpaces(
-                this.state.grid, [])
+                this.state.grid, invalidWidgets)
 
         # grid unit and padding
         fullGridUnit = {

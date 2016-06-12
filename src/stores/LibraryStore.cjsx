@@ -9,12 +9,12 @@ LibraryStore = Reflux.createStore
     listenables: [LibraryActions]
 
     widgets: [
-        #{
-        #    kind: "timer"
-        #    name: "Time"
-        #    icon: "clock"
-        #    class: require "widgets/Time.cjsx"
-        #}
+        {
+           kind: "timer"
+           name: "Time"
+           icon: "clock"
+           class: require "widgets/Time.cjsx"
+        }
     ]
 
     getWidgetFromKind: (kind) ->
