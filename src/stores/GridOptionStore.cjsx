@@ -37,6 +37,10 @@ GridOptionStore = Reflux.createStore
                 gridDim:
                     x: 6
                     y: 3
+
+                maxGridDim:
+                    x: 6
+                    y: 3
             }
         ]
 
@@ -64,7 +68,7 @@ GridOptionStore = Reflux.createStore
 
     # determine which grid to use, based on the current window dimensions
     # returns true if the current grid changed. Gives priority to ones
-    # earlier on in the array
+    # earlier on in the array. generate a ne
     pickGrid: ->
         oldGridIndex = this.gridOptions.currentOptionsIndex
         windowWidth = window.innerWidth
@@ -85,14 +89,33 @@ GridOptionStore = Reflux.createStore
 
         for grid, index in this.gridOptions.grids
             [minWidth, minHeight] = calculateGridSize grid
-            if minWidth < windowWidth && minHeight < windowHeight
+            if minWidth < windowWidth
                 this.gridOptions.currentOptionsIndex = index
-                return index != oldGridIndex
+                #grow as needed
+                curGrid = this.getCurrentGrid()
+                [minWidth, minHeight] = calculateGridSize curGrid
+                previousX = curGrid.gridDim.x
+                console.log curGrid.gridDim.x
+                while (minWidth < windowWidth) and (curGrid.gridDim.x <= curGrid.maxGridDim.x)
+                  curGrid.gridDim.x = curGrid.gridDim.x + 1
+                  [minWidth, minHeight] = calculateGridSize curGrid
+                curGrid.gridDim.x = curGrid.gridDim.x - 1 #more elegent way to do this? above while will break when the x is too big.
+                this._updateCurrentGrid(curGrid)
+                return curGrid.gridDim.x != previousX
+
+        #bad william, but we're going to clobber some shit until it works right.
 
         this.gridOptions.currentOptionsIndex =
             this.gridOptions.grids.length - 1
 
-        return this.gridOptions.currentOptionsIndex != oldGridIndex
+        curGrid = this.getCurrentGrid()
+        previousX = curGrid.gridDim.x
+        [minWidth, minHeight] = calculateGridSize curGrid
+        while minWidth > windowWidth
+          curGrid.gridDim.x = curGrid.gridDim.x - 1
+          [minWidth, minHeight] = calculateGridSize curGrid
+        this._updateCurrentGrid(curGrid)
+        return previousX != curGrid.gridDim.x
 
     pickGridAndTrigger: ->
         if this.pickGrid()
@@ -101,6 +124,10 @@ GridOptionStore = Reflux.createStore
     # get the current grid object
     getCurrentGrid: ->
         this.gridOptions.grids[this.gridOptions.currentOptionsIndex]
+
+    #private lol set current grid
+    _updateCurrentGrid: (grid) ->
+        this.gridOptions.grids[this.gridOptions.currentOptionsIndex] = grid
 
     # update the gridOptions object in local storage and trigger
     # on the current grid
